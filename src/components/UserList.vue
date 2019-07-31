@@ -4,16 +4,16 @@
     <error-message :errors="errors" />
     <button v-on:click="show_new_user = !show_new_user">Create User</button>
     <select v-model="per_page">
-      <option v-for="size in per_page_options">{{size}}</option>
+      <option v-for="size in per_page_options" :key="size">{{size}}</option>
     </select>
     <ul>
-      <li v-for="user in users">
+      <li v-for="user in users" :key="user">
         {{user.id}} | {{user.first_name}} {{user.last_name}} | {{user.email}}
       </li>
     </ul>
-    <button v-on:click="page--" v-if="page > 1"> < </button>
+    <button v-on:click="page--" v-if="page > 1"> previous </button>
     {{page}}
-    <button v-on:click="page++" v-if="page < total_pages"> > </button>
+    <button v-on:click="page++" v-if="page < total_pages"> next </button>
     <br>
     <div v-if="show_new_user">
       <new-user />
@@ -45,6 +45,7 @@ export default {
       this.getUsers()
     },
     per_page(){
+      this.page = 1
       this.getUsers()
     }
   },

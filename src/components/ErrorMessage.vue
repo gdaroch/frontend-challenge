@@ -1,7 +1,7 @@
 <template lang="html">
   <div v-if="this.errors">
     <ul>
-      <li v-for="error in errors">{{error}}</li>
+      <li v-for="error in errors" :key="error">{{error}}</li>
     </ul>
   </div>
 </template>
