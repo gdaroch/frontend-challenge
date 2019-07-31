@@ -1,15 +1,23 @@
 <template lang="html">
   <div>
     <h1>Users</h1>
-    <error-message :errors="errors"> </error-message>
+    <error-message :errors="errors" />
+    <button v-on:click="show_new_user = !show_new_user">Create User</button>
+    <select v-model="per_page">
+      <option v-for="size in per_page_options">{{size}}</option>
+    </select>
     <ul>
       <li v-for="user in users">
-        {{user.id}} {{user.first_name}} {{user.last_name}} {{user.email}}
+        {{user.id}} | {{user.first_name}} {{user.last_name}} | {{user.email}}
       </li>
     </ul>
     <button v-on:click="page--" v-if="page > 1"> < </button>
     {{page}}
     <button v-on:click="page++" v-if="page < total_pages"> > </button>
+    <br>
+    <div v-if="show_new_user">
+      <new-user />
+    </div>
   </div>
 </template>
 
@@ -17,14 +25,16 @@
 import auth from '../auth.js'
 
 export default {
-  name: 'user',
+  name: 'user-list',
   data () {
     return {
       errors: [],
       users: [],
       page: 1,
       per_page: 5,
-      total_pages: 1
+      per_page_options: [2, 5,  10],
+      total_pages: 1,
+      show_new_user: false
     }
   },
   mounted () {
@@ -32,6 +42,9 @@ export default {
   },
   watch: {
     page(){
+      this.getUsers()
+    },
+    per_page(){
       this.getUsers()
     }
   },

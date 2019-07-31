@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-    <user />
+    <user-list />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import User from './components/User.vue'
 
 export default {
-  name: 'app',
-  components: {
-    User
-  }
+  name: 'app'
 }
 </script>
 

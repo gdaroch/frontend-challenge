@@ -12,3 +12,6 @@
     props: ['errors']
   }
 </script>
+
+<style lang="css" scoped>
+</style>
