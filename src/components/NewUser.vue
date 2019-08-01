@@ -34,6 +34,15 @@ export default {
   methods: {
     createUser () {
       alert('Under construction!')
+      // Axios request example:
+      // auth.sendRequest().HTTP_VERB_HERE(URL_HERE, PARAMS_HERE)
+      // Required HTML
+      // curl --request POST \
+      // --url https://reqres.in/api/users \
+      // --header 'content-type: application/json' \
+      // --data '{
+      // "email": "juan@perez.com", "first_name": "Juan", "last_name": "Perez"
+      // }'
     }
   }
 }
