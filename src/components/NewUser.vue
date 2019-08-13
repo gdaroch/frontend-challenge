@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import auth from '../auth.js'
+
 export default {
   name: 'new-user',
   data () {
@@ -33,7 +35,17 @@ export default {
   },
   methods: {
     createUser () {
-      alert('Under construction!')
+      var data = {
+        name: this.name,
+        last_name: this.last_name,
+        email: this.email
+      }
+      auth.sendRequest().post("users", data).then((response) => {
+        console.log(response.data)
+      }).catch(() => {
+        this.errors.push('Error uploading user data')
+      })
+      // alert('Under construction!')
       // Axios request example:
       // auth.sendRequest().HTTP_VERB_HERE(URL_HERE, PARAMS_HERE)
       // Required HTML
